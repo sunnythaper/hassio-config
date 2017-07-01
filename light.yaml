@@ -97,3 +97,17 @@
   rgb: true
   optimistic: false
   qos: 0
+
+################################################################################
+## DINING ROOM MULTISENSOR LED
+################################################################################
+
+- platform: mqtt_json
+  name: "Dining Room Sensor LED"
+  state_topic: "sensors/dining_room"
+  command_topic: "sensors/dining_room/set"
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0

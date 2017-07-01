@@ -194,6 +194,39 @@
   value_template: '{{ value_json.heatIndex }}'
 
 ################################################################################
+## DINING ROOM MULTISENSOR
+################################################################################
+
+- platform: mqtt
+  state_topic: "sensors/dining_room"
+  name: "Dining Room Temperature"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.temperature }}'
+
+- platform: mqtt
+  state_topic: "sensors/dining_room"
+  name: "Dining Room Humidity"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.humidity }}'
+
+- platform: mqtt
+  state_topic: "sensors/dining_room"
+  name: "Dining Room LUX"
+  unit_of_measurement: LUX
+  value_template: '{{ value_json.ldr }}'
+
+- platform: mqtt
+  state_topic: "sensors/dining_room"
+  name: "Dining Room Motion Status"
+  value_template: '{{ value_json.motion }}'
+
+- platform: mqtt
+  state_topic: "sensors/dining_room"
+  name: "Dining Room Heat Index"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.heatIndex }}'
+
+################################################################################
 ## CAMERAS
 ################################################################################
 

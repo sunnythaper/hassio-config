@@ -173,7 +173,7 @@ other:
   entities:
   - light.controller_charger
   - switch.amazon_dash
-  - calendar.meltmedia
+  - calendar.work
 
 automations:
   name: Automations
@@ -208,6 +208,7 @@ climate:
   - group.office_climate
   - group.kitchen_climate
   - group.hallway_climate
+  - group.dining_room_climate
   - camera.doppler_weather
   - camera.wu_doppler_weather
 
@@ -280,3 +281,12 @@ kitchen_climate:
     - sensor.kitchen_heat_index
     - light.kitchen_sensor_led
     - sensor.kitchen_motion_status
+
+dining_room_climate:
+  name: Dining Room Climate
+  entities:
+    - sensor.dining_room_temperature
+    - sensor.dining_room_humidity
+    - sensor.dining_room_heat_index
+    - light.dining_room_sensor_led
+    - sensor.dining_room_motion_status
