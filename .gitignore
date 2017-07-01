@@ -1,0 +1,17 @@
+.DS_*
+.HA_*
+._.*
+.google*
+.spotify*
+.uuid
+OZW*
+google_calendars.yaml
+home-assistant*
+known_devices.yaml
+nest.conf
+phue.conf
+pyozw*
+secrets.yaml
+zwcfg*
+zwscene.xml
+emulated_hue_ids*

@@ -1,0 +1,15 @@
+broker: 127.0.0.1
+port: 1883
+client_id: HASS
+username: !secret mqtt_user
+password: !secret mqtt_password
+birth_message:
+  topic: "tele/hass1/LWT"
+  payload: "Online"
+  qos: 1
+  retain: true
+will_message:
+  topic: "tele/hass1/LWT"
+  payload: "Offline"
+  qos: 1
+  retain: true

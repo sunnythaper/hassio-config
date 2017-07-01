@@ -1,0 +1,99 @@
+################################################################################
+## PHILIPS HUE
+################################################################################
+
+- platform: hue
+  host: !secret hue_ip
+  scan_interval: 15
+
+################################################################################
+## LIFX
+################################################################################
+
+- platform: lifx
+
+################################################################################
+## OFFICE SONOFFS
+################################################################################
+
+- platform: mqtt
+  name: Office Floor Lamp
+  command_topic: cmnd/office_floor_lamp/POWER
+  state_topic: stat/office_floor_lamp/POWER
+  qos: 1
+  retain: true
+
+- platform: mqtt
+  name: Office Table Lamp
+  command_topic: cmnd/office_table_lamp/POWER
+  state_topic: stat/office_table_lamp/POWER
+  qos: 1
+  retain: true
+
+################################################################################
+## CONTROLLER CHARGER SONOFF
+################################################################################
+
+- platform: mqtt
+  name: Controller Charger
+  command_topic: cmnd/controller_charger/POWER
+  state_topic: stat/controller_charger/POWER
+  qos: 1
+  retain: true
+
+################################################################################
+## BEDROOM MULTISENSOR LED
+################################################################################
+
+- platform: mqtt_json
+  name: "Bedroom Sensor LED"
+  state_topic: "sensors/bedroom"
+  command_topic: "sensors/bedroom/set"
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+
+################################################################################
+## LIVING ROOM MULTISENSOR LED
+################################################################################
+
+- platform: mqtt_json
+  name: "Living Room Sensor LED"
+  state_topic: "sensors/living_room"
+  command_topic: "sensors/living_room/set"
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+
+
+################################################################################
+## OFFICE MULTISENSOR LED
+################################################################################
+
+- platform: mqtt_json
+  name: "Office Sensor LED"
+  state_topic: "sensors/office"
+  command_topic: "sensors/office/set"
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0
+
+################################################################################
+## KITCHEN MULTISENSOR LED
+################################################################################
+
+- platform: mqtt_json
+  name: "Kitchen Sensor LED"
+  state_topic: "sensors/kitchen"
+  command_topic: "sensors/kitchen/set"
+  brightness: true
+  flash: true
+  rgb: true
+  optimistic: false
+  qos: 0

@@ -1,0 +1,61 @@
+light.bedroom: &ref_0
+  hidden: true
+light.dining_room: *ref_0
+light.downstairs: *ref_0
+light.living_room: *ref_0
+light.upstairs: *ref_0
+group.bedroom:
+  order: 1
+camera.traffic:
+  order: 2
+  emulated_hue: false
+camera.7th_st:
+  order: 3
+  emulated_hue: false
+camera.16th_st:
+  order: 4
+  emulated_hue: false
+group.nest:
+  order: 5
+  emulated_hue: false
+group.upstairs_ac:
+  order: 6
+group.weather:
+  order: 7
+  emulated_hue: false
+group.automations:
+  order: 8
+  emulated_hue: false
+group.other:
+  order: 9
+  emulated_hue: false
+group.sunnys_phone:
+  order: 10
+  emulated_hue: false
+group.network:
+  order: 11
+  emulated_hue: false
+switch.office_floor_lamp: &ref_1
+  icon: mdi:lightbulb-on-outline
+switch.office_table_lamp: *ref_1
+camera.living_room: &ref_2
+  emulated_hue: false
+camera.dining_room: *ref_2
+switch.camera_monitoring: *ref_2
+group.all_automations: *ref_2
+group.camera_status: *ref_2
+group.all_devices: *ref_2
+group.cameras: *ref_2
+light.fireplace: *ref_2
+light.tv: *ref_2
+light.hallway: *ref_2
+light.bar: *ref_2
+light.dining_room_ceiling_1: *ref_2
+light.dining_room_ceilng_2: *ref_2
+light.bedside: *ref_2
+light.reading_lamp: *ref_2
+light.foyer: *ref_2
+light.closet: *ref_2
+group.nest_climate: *ref_2
+group.upstairs_climate: *ref_2
+group.office_climate: *ref_2

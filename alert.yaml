@@ -1,0 +1,18 @@
+living_room_alarm:
+  name: Living Room Alarm has been tripped!
+  entity_id: sensor.living_room_motion
+  state: Detected
+  repeat: 1
+  can_acknowledge: true
+  skip_first: false
+  notifiers:
+    - Slack
+dining_room_alarm:
+  name: Dining Room Alarm has been tripped!
+  entity_id: sensor.dining_room_motion
+  state: Detected
+  repeat: 1
+  can_acknowledge: true
+  skip_first: false
+  notifiers:
+    - Slack

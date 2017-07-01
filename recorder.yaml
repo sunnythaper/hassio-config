@@ -1,0 +1,13 @@
+purge_days: 2
+include:
+    domains:
+      - automation
+      - climate
+      - device_tracker
+      - input_select
+      - media_player
+      - switch
+      - calendar
+      - light
+      - sensor
+      - sun

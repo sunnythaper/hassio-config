@@ -1,0 +1,214 @@
+################################################################################
+## MOON
+################################################################################
+
+- platform: moon
+
+################################################################################
+## LAST.FM
+################################################################################
+
+- platform: lastfm
+  api_key: !secret lastfm_api_key
+  users:
+    - Ynnus
+  scan_interval: 15
+
+################################################################################
+## WEATHER UNDERGROUND
+################################################################################
+
+- platform: wunderground
+  api_key: !secret wu_api_key
+  monitored_conditions:
+    - alerts
+    - dewpoint_f
+    - feelslike_f
+    - heat_index_f
+    - elevation
+    - location
+    - observation_time
+    - precip_1hr_in
+    - precip_today_in
+    - pressure_in
+    - pressure_mb
+    - pressure_trend
+    - relative_humidity
+    - station_id
+    - solarradiation
+    - temp_f
+    - UV
+    - visibility_mi
+    - weather
+    - wind_degrees
+    - wind_dir
+    - wind_gust_mph
+    - wind_mph
+
+################################################################################
+## SSL CERTIFICATE CHECK
+################################################################################
+
+- platform: cert_expiry
+  host: !secret base_url
+
+################################################################################
+## FAST.COM SPEED CHECK
+################################################################################
+
+- platform: fastdotcom
+  minute:
+    - 0
+    - 30
+
+################################################################################
+## BEDROOM ROOM MULTISENSOR
+################################################################################
+
+- platform: mqtt
+  state_topic: "sensors/bedroom"
+  name: "Bedroom Temperature"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.temperature }}'
+
+- platform: mqtt
+  state_topic: "sensors/bedroom"
+  name: "Bedroom Humidity"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.humidity }}'
+
+- platform: mqtt
+  state_topic: "sensors/bedroom"
+  name: "Bedroom LUX"
+  unit_of_measurement: LUX
+  value_template: '{{ value_json.ldr }}'
+
+- platform: mqtt
+  state_topic: "sensors/bedroom"
+  name: "Bedroom Motion Status"
+  value_template: '{{ value_json.motion }}'
+
+- platform: mqtt
+  state_topic: "sensors/bedroom"
+  name: "Bedroom Heat Index"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.heatIndex }}'
+
+################################################################################
+## LIVING ROOM MULTISENSOR
+################################################################################
+
+- platform: mqtt
+  state_topic: "sensors/living_room"
+  name: "Living Room Temperature"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.temperature }}'
+
+- platform: mqtt
+  state_topic: "sensors/living_room"
+  name: "Living Room Humidity"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.humidity }}'
+
+- platform: mqtt
+  state_topic: "sensors/living_room"
+  name: "Living Room LUX"
+  unit_of_measurement: LUX
+  value_template: '{{ value_json.ldr }}'
+
+- platform: mqtt
+  state_topic: "sensors/living_room"
+  name: "Living Room Motion Status"
+  value_template: '{{ value_json.motion }}'
+
+- platform: mqtt
+  state_topic: "sensors/living_room"
+  name: "Living Room Heat Index"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.heatIndex }}'
+
+################################################################################
+## OFFICE MULTISENSOR
+################################################################################
+
+- platform: mqtt
+  state_topic: "sensors/office"
+  name: "Office Temperature"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.temperature }}'
+
+- platform: mqtt
+  state_topic: "sensors/office"
+  name: "Office Humidity"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.humidity }}'
+
+- platform: mqtt
+  state_topic: "sensors/office"
+  name: "Office LUX"
+  unit_of_measurement: LUX
+  value_template: '{{ value_json.ldr }}'
+
+- platform: mqtt
+  state_topic: "sensors/office"
+  name: "Office Motion Status"
+  value_template: '{{ value_json.motion }}'
+
+- platform: mqtt
+  state_topic: "sensors/office"
+  name: "Office Heat Index"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.heatIndex }}'
+
+################################################################################
+## KITCHEN MULTISENSOR
+################################################################################
+
+- platform: mqtt
+  state_topic: "sensors/kitchen"
+  name: "Kitchen Temperature"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.temperature }}'
+
+- platform: mqtt
+  state_topic: "sensors/kitchen"
+  name: "Kitchen Humidity"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.humidity }}'
+
+- platform: mqtt
+  state_topic: "sensors/kitchen"
+  name: "Kitchen LUX"
+  unit_of_measurement: LUX
+  value_template: '{{ value_json.ldr }}'
+
+- platform: mqtt
+  state_topic: "sensors/kitchen"
+  name: "Kitchen Motion Status"
+  value_template: '{{ value_json.motion }}'
+
+- platform: mqtt
+  state_topic: "sensors/kitchen"
+  name: "Kitchen Heat Index"
+  unit_of_measurement: °F
+  value_template: '{{ value_json.heatIndex }}'
+
+################################################################################
+## CAMERAS
+################################################################################
+
+- platform: mqtt
+  name: Living Room Status
+  state_topic: "cameras/foscam/living_room/motion_status"
+
+- platform: mqtt
+  name: Living Room Motion
+  state_topic: "cameras/foscam/living_room/motion_detect"
+
+- platform: mqtt
+  name: Dining Room Status
+  state_topic: "cameras/foscam/dining_room/motion_status"
+
+- platform: mqtt
+  name: Dining Room Motion
+  state_topic: "cameras/foscam/dining_room/motion_detect"

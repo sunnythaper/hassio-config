@@ -1,0 +1,11 @@
+- name: Pushbullet
+  platform: pushbullet
+  api_key: !secret pushbullet_api
+- name: Slack
+  platform: slack
+  api_key: !secret slack_api
+  default_channel: '#home'
+- name: scene_generator
+  platform: file
+  filename: generated_scene.yaml
+  timestamp: false

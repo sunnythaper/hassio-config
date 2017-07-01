@@ -1,0 +1,8 @@
+abode_status:
+  name: Abode Status
+  options:
+    - Standby
+    - Home
+    - Away
+  initial: Standby
+  icon: mdi:security-home
