@@ -88,7 +88,7 @@ kitchen:
   view: 'no'
   entities:
   - light.kitchen_desk_lamp
-  - switch.kitchen_cabinets_switch_3_0
+  - switch.kitchen_cabinets_switch
 
 bedroom:
   name: Bedroom
@@ -99,7 +99,7 @@ bedroom:
   - light.closet
   - light.foyer
   - light.reading_lamp
-  - switch.stairway_switch_4_0
+  - switch.stairway_switch
 
 office:
   name: Office
