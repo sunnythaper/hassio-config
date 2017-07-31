@@ -21,6 +21,7 @@ http:
 config: null
 updater: null
 discovery: null
+hassio: null
 conversation: null
 history: null
 recorder: !include recorder.yaml
@@ -66,8 +67,8 @@ zone:
   radius: 100
   icon: mdi:domain
 emulated_hue: !include emulated_hue.yaml
-influxdb:
-  host: !secret influx_host
-  username: !secret influx_user
-  password: !secret influx_password
+# influxdb:
+#   host: !secret influx_host
+#   username: !secret influx_user
+#   password: !secret influx_password
 python_script: null

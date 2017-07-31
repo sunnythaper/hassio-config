@@ -23,9 +23,9 @@
       state: on
       brightness: 5
       xy_color: [0.6695,0.326]
-    light.bedside: off
+    light.bed_right: off
     light.closet: off
-    switch.stairway_switch_4_0: off
+    switch.stairway_switch: off
     group.dining_room: off
     group.living_room: off
     group.office: off
@@ -46,7 +46,11 @@
     input_select.abode_status:
       option: Home
     group.dining_room: off
-    group.bedroom: off
+    group.bedroom:
+      state: off
+      brightness: 143
+      color_temp: 438
+    switch.stairway_switch: off
     group.living_room: off
     group.office: off
     group.kitchen: off
@@ -150,6 +154,6 @@
       state: on
       brightness: 143
       color_temp: 438
-    switch.stairway_switch_4_0: on
+    switch.stairway_switch: on
     input_select.abode_status:
       option: Home
