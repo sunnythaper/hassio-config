@@ -13,3 +13,5 @@ emulated_hue_ids*
 *.sqlite
 *.txt
 *.xml
+camera.yaml
+zwave*

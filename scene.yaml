@@ -25,7 +25,7 @@
       xy_color: [0.6695,0.326]
     light.bed_right: off
     light.closet: off
-    switch.stairway_switch: off
+    switch.stairway_switch_4_0: off
     group.dining_room: off
     group.living_room: off
     group.office: off
@@ -154,6 +154,6 @@
       state: on
       brightness: 143
       color_temp: 438
-    switch.stairway_switch: on
+    switch.stairway_switch_4_0: on
     input_select.abode_status:
       option: Home
