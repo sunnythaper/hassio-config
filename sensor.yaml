@@ -8,11 +8,11 @@
 ## LAST.FM
 ################################################################################
 
-- platform: lastfm
-  api_key: !secret lastfm_api_key
-  users:
-    - Ynnus
-  scan_interval: 15
+# - platform: lastfm
+#   api_key: !secret lastfm_api_key
+#   users:
+#     - Ynnus
+#   scan_interval: 15
 
 ################################################################################
 ## WEATHER UNDERGROUND
