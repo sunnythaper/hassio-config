@@ -45,7 +45,7 @@ switch.camera_monitoring: *ref_2
 group.all_automations: *ref_2
 group.camera_status: *ref_2
 group.all_devices: *ref_2
-group.cameras: *ref_2
+group.security: *ref_2
 light.fireplace: *ref_2
 light.tv: *ref_2
 light.hallway: *ref_2

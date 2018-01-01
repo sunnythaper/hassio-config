@@ -16,7 +16,7 @@ scenes:
   name: Scenes
   view: 'no'
   entities:
-  - input_select.abode_status
+  - alarm_control_panel.abode
   - scene.out_of_the_house
   - scene.wakeytime
   - scene.evening
@@ -28,11 +28,12 @@ scenes:
 ## CAMERAS
 ################################################################################
 
-cameras:
-  name: Cameras
+security:
+  name: Security
   view: 'yes'
   icon: mdi:video
   entities:
+  - group.contact_sensors
   - group.camera_status
   - camera.living_room
   - camera.dining_room
@@ -47,6 +48,17 @@ camera_status:
   - sensor.living_room_status
   - sensor.dining_room_motion
   - sensor.dining_room_status
+
+contact_sensors:
+  name: Contact Sensors
+  view: false
+  control: hidden
+  entities:
+  - binary_sensor.remote
+  - binary_sensor.back_door
+  - binary_sensor.front_door
+  - binary_sensor.left_kitchen_window
+  - binary_sensor.right_kitchen_window
 
 ################################################################################
 ## LIGHTS
@@ -70,8 +82,8 @@ living_room:
   entities:
   - light.arc_lamp
   - light.fireplace
-  - light.tv_left
-  - light.tv_right
+  - light.left_tv
+  - light.right_tv
 
 dining_room:
   name: Dining Room
@@ -152,12 +164,12 @@ information:
   view: 'yes'
   icon: mdi:help-circle
   entities:
-  - sensor.stairway_energy_4_0
-  - sensor.stairway_power_4_8
   - group.network
   - group.sunnys_phone
   - group.other
   - group.automations
+  - group.asus_router
+  - group.nzbget
 
 sunnys_phone:
   name: Sunny's Phone
@@ -183,16 +195,34 @@ automations:
   - automation.sleepytime
   - automation.wakeytime
   - automation.upstairs_osmc_playing
-  - automation.set_abode_mode
+  - automation.set_abode_state
   - automation.set_away_mode
-  - automation.living_room_motion_led_on
-  - automation.living_room_motion_led_off
 
 network:
   name: Network
   view: false
   entities:
   - sensor.ssl_certificate_expiry
+  - sensor.fastcom_download
+
+asus_router:
+  name: ASUS Router
+  view: false
+  entities:
+  - device_tracker.abode
+  - device_tracker.octopi
+  - device_tracker.plexserver
+  - device_tracker.sunnys7plus
+
+nzbget:
+  name: NZBGet
+  view: false
+  entities:
+  - sensor.nzbget_article_cache
+  - sensor.nzbget_average_speed
+  - sensor.nzbget_disk_free
+  - sensor.nzbget_speed
+  - sensor.nzbget_uptime
 
 ################################################################################
 ## CLIMATE
@@ -291,3 +321,41 @@ dining_room_climate:
     - sensor.dining_room_heat_index
     - light.dining_room_sensor_led
     - sensor.dining_room_motion_status
+
+################################################################################
+## ENERGY USAGE (HIDDEN)
+################################################################################
+
+energy_usage:
+  name: Energy Usage
+  view: no
+  entities:
+  - sensor.stairway_energy
+  - sensor.stairway_power
+  - sensor.stairway_previous_reading
+  - sensor.stairway_previous_reading_2
+
+################################################################################
+## EXTRA CRAP (HIDDEN)
+################################################################################
+
+extra_crap:
+  name: Extra Crap
+  view: no
+  entities:
+  - sensor.pws_alerts
+  - sensor.bedroom_lux
+  - sensor.dining_room_lux
+  - sensor.kitchen_lux
+  - sensor.living_room_lux
+  - sensor.office_lux
+  - sensor.pws_elevation
+  - sensor.pws_location
+  - sensor.pws_observation_time
+  - binary_sensor.nest_thermostat_fan
+  - binary_sensor.nest_thermostat_is_locked
+  - binary_sensor.nest_thermostat_is_using_emergency_heat
+  - binary_sensor.nest_thermostat_online
+  - sensor.nest_thermostat_hvac_state
+  - sensor.nest_thermostat_operation_mode
+  - sensor.nest_thermostat_target

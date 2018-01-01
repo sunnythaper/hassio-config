@@ -10,7 +10,8 @@ homeassistant:
     light:
       icon: 'mdi:lightbulb-on-outline'
   customize_glob: {}
-frontend: null
+frontend:
+  javascript_version: latest
 http:
   api_password: !secret hass_password
   ssl_certificate: /ssl/fullchain.pem
@@ -26,7 +27,9 @@ conversation: null
 history: null
 recorder: !include recorder.yaml
 logbook: null
+system_log: null
 ios: null
+map: null
 sun: null
 camera: !include camera.yaml
 sensor: !include sensor.yaml
@@ -37,12 +40,7 @@ zwave:
   usb_path: /dev/ttyUSB0
 ifttt:
   key: !secret ifttt_key
-device_tracker:
-  - platform: automatic
-    client_id: !secret automatic_client_id
-    secret: !secret automatic_secret
-    username: !secret sunnys_email
-    password: !secret automatic_password
+device_tracker: !include device_tracker.yaml
 light: !include light.yaml
 switch: !include switch.yaml
 notify: !include notify.yaml
@@ -72,3 +70,8 @@ emulated_hue: !include emulated_hue.yaml
 #   username: !secret influx_user
 #   password: !secret influx_password
 python_script: null
+abode:
+  username: !secret sunnys_email
+  password: !secret abode_password
+  name: Abode
+shopping_list: null

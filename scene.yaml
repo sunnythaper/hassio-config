@@ -1,20 +1,44 @@
+################################################################################
+## OUT OF THE HOUSE
+################################################################################
+
 - name: Out of the House
   entities:
-    switch.camera_monitoring:
-      state: on
+
+    # Alarm
+    input_select.abode_status:
+      option: arm_away
+
+    # Lights
+    input_select.lights_scene:
+      option: Out of the House
+
     group.dining_room: off
     group.bedroom: off
     group.living_room: off
     group.office: off
     group.kitchen: off
     group.bathroom: off
+
+    # Climate
     climate.nest:
       operation_mode: eco
-    input_select.abode_status:
-      option: Away
-    climate.upstairs_ac: off
+
+################################################################################
+## SLEEPYTIME
+################################################################################
+
 - name: Sleepytime
   entities:
+
+    # Alarm
+    input_select.abode_status:
+      option: arm_home
+
+    # Lights
+    input_select.lights_scene:
+      option: Sleepytime
+
     light.reading_lamp:
       state: on
       brightness: 5
@@ -23,137 +47,110 @@
       state: on
       brightness: 5
       xy_color: [0.6695,0.326]
-    light.bed_right: off
+    light.right_bed: off
     light.closet: off
-    switch.stairway_switch_4_0: off
+    switch.stairway_switch: off
     group.dining_room: off
     group.living_room: off
     group.office: off
     group.kitchen: off
     group.bathroom: off
+
+    # Climate
     climate.nest:
       operation_mode: eco
-    switch.camera_monitoring:
-      state: on
-    input_select.abode_status:
-      option: Home
+
+################################################################################
+## WAKEYTIME
+################################################################################
+
 - name: Wakeytime
   entities:
-    switch.camera_monitoring:
-      state: off
-    climate.nest:
-      operation_mode: cool
+
+    # Alarm
     input_select.abode_status:
-      option: Home
+      option: disarm
+
+    # Lights
+    input_select.lights_scene:
+      option: Wakeytime
+
     group.dining_room: off
     group.bedroom:
       state: off
-      brightness: 143
-      color_temp: 438
     switch.stairway_switch: off
     group.living_room: off
     group.office: off
     group.kitchen: off
     group.bathroom: off
-- name: Evening
-  entities:
-    switch.camera_monitoring:
-      state: off
 
+    # Climate
     climate.nest:
       operation_mode: cool
 
+################################################################################
+## EVENING
+################################################################################
+
+- name: Evening
+  entities:
+
+    # Alarm
     input_select.abode_status:
-      option: Standby
+      option: disarm
 
-    group.kitchen: on
+    # Lights
+    input_select.lights_scene:
+      option: Evening
 
-    #############################################
-    ## light
-    #############################################
+    # Climate
+    climate.nest:
+      operation_mode: cool
 
-    light.office_floor_lamp:
-      state: on
-
-    light.office_table_lamp:
-      state: on
-
-    light.bar:
-      state: on
-      brightness: 113
-      color_temp: 459
-
-    light.closet:
-      state: off
-
-    light.dining_room_ceiling_1:
-      state: on
-      brightness: 175
-      color_temp: 500
-
-    light.dining_room_ceilng_2:
-      state: on
-      brightness: 111
-      color_temp: 500
-
-    light.bathroom_ceiling:
-      state: on
-      brightness: 27
-      color_temp: 500
-
-    light.foyer:
-      state: off
-
-    light.reading_lamp:
-      state: off
-
-    light.hallway:
-      state: on
-      brightness: 94
-      color_temp: 438
-
-    light.bedside:
-      state: off
-
-    light.fireplace:
-      state: on
-      brightness: 151
-      color_temp: 500
-
-    light.arc_lamp:
-      state: on
-      brightness: 76
-      color_temp: 400.0
-
-    light.tv_left:
-      state: on
-      brightness: 62
-      color_temp: 400.0
-
-    light.dining_room_table:
-      state: on
-      brightness: 60
-      color_temp: 400.0
-
-    light.tv_right:
-      state: on
-      brightness: 62
-      color_temp: 400.0
+################################################################################
+## UPSTAIRS OSMC PLAYING
+################################################################################
 
 - name: Upstairs OSMC Playing
   entities:
+
+    # Alarm
+    input_select.abode_status:
+      option: arm_home
+
+    # Lights
+    input_select.lights_scene:
+      option: Upstairs OSMC Playing
+
     group.bedroom:
       state: on
       brightness: 20
       color_temp: 438
-    input_select.abode_status:
-      option: Home
+
+################################################################################
+## BEDROOM EVENING CHILLIN
+################################################################################
+
 - name: Bedroom Evening Chillin
   entities:
+
+    # Alarm
+    input_select.abode_status:
+      option: arm_home
+
+    # Lights
+    input_select.lights_scene:
+      option: Bedroom Evening Chillin
+
     group.bedroom:
       state: on
       brightness: 143
       color_temp: 438
-    switch.stairway_switch_4_0: on
-    input_select.abode_status:
-      option: Home
+    switch.stairway_switch: on
+
+################################################################################
+## LIFX SCENES
+################################################################################
+
+- platform: lifx_cloud
+  token: !secret lifx_token

@@ -1,3 +1,57 @@
+################################################################################
+## SET ABODE STATE
+################################################################################
+
+- id: set_abode_state
+  alias: Set Abode State
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.abode_status
+  action:
+    service_template: >
+      alarm_control_panel.alarm_{{ trigger.to_state.state }}
+    entity_id: alarm_control_panel.abode
+
+################################################################################
+## SET LIGHT SCENES (LIFX + HUE)
+################################################################################
+
+- id: set_light_scenes
+  alias: Set Light Scenes
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.lights_scene
+  action:
+    - service: scene.turn_on
+      data_template:
+        entity_id: scene.{{ trigger.to_state.state|lower|replace(" ", "_") }}_lifx
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Dining Room"
+        scene_name: "{{ trigger.to_state.state }} Hue"
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Living Room"
+        scene_name: "{{ trigger.to_state.state }} Hue"
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Bathroom"
+        scene_name: "{{ trigger.to_state.state }} Hue"
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Kitchen"
+        scene_name: "{{ trigger.to_state.state }} Hue"
+    - service: hue.hue_activate_scene
+      data_template:
+        group_name: "Bedroom"
+        scene_name: "{{ trigger.to_state.state }} Hue"
+
+################################################################################
+## SLEEPYTIME
+################################################################################
+
 - id: sleepytime
   alias: Sleepytime
   initial_state: true
@@ -17,6 +71,11 @@
   action:
     service: scene.turn_on
     entity_id: scene.sleepytime
+
+################################################################################
+## MORNING ROUTINE
+################################################################################
+
 - id: wakeytime
   alias: Wakeytime
   initial_state: true
@@ -31,16 +90,11 @@
   action:
     service: scene.turn_on
     entity_id: scene.wakeytime
-- id: set_abode_mode
-  alias: Set Abode Mode
-  initial_state: true
-  trigger:
-    platform: state
-    entity_id: input_select.abode_status
-  action:
-    service: ifttt.trigger
-    data_template:
-      event: abode_{{ trigger.to_state.state }}
+
+################################################################################
+## ARM ALARM AND TURNOFF LIGHTS WHEN CAR LEAVES
+################################################################################
+
 - id: set_away_mode
   alias: Set Away Mode
   initial_state: true
@@ -52,6 +106,11 @@
   action:
     service: scene.turn_on
     entity_id: scene.out_of_the_house
+
+################################################################################
+## BEDROOM OSMC DIMS LIGHTS
+################################################################################
+
 - id: upstairs_osmc_playing
   alias: Upstairs OSMC Playing
   initial_state: true
@@ -77,8 +136,8 @@
   trigger:
     platform: state
     entity_id: sensor.living_room_motion_status
-    from: standby
-    to: motion detected
+    from: None
+    to: Motion Detected
   action:
     service: light.turn_on
     entity_id: light.living_room_sensor_led
@@ -89,8 +148,8 @@
   trigger:
     platform: state
     entity_id: sensor.living_room_motion_status
-    from: motion detected
-    to: standby
+    from: Motion Detected
+    to: None
   action:
     service: light.turn_off
     entity_id: light.living_room_sensor_led
@@ -105,8 +164,8 @@
   trigger:
     platform: state
     entity_id: sensor.kitchen_motion_status
-    from: standby
-    to: motion detected
+    from: None
+    to: Motion Detected
   action:
     service: light.turn_on
     entity_id: light.kitchen_sensor_led
@@ -117,8 +176,8 @@
   trigger:
     platform: state
     entity_id: sensor.kitchen_motion_status
-    from: motion detected
-    to: standby
+    from: Motion Detected
+    to: None
   action:
     service: light.turn_off
     entity_id: light.kitchen_sensor_led
@@ -133,8 +192,8 @@
   trigger:
     platform: state
     entity_id: sensor.office_motion_status
-    from: standby
-    to: motion detected
+    from: None
+    to: Motion Detected
   action:
     service: light.turn_on
     entity_id: light.office_sensor_led
@@ -145,8 +204,8 @@
   trigger:
     platform: state
     entity_id: sensor.office_motion_status
-    from: motion detected
-    to: standby
+    from: Motion Detected
+    to: None
   action:
     service: light.turn_off
     entity_id: light.office_sensor_led
@@ -161,8 +220,8 @@
   trigger:
     platform: state
     entity_id: sensor.kitchen_motion_status
-    from: standby
-    to: motion detected
+    from: None
+    to: Motion Detected
   action:
     service: homeassistant.turn_on
     entity_id: group.kitchen
@@ -173,8 +232,8 @@
   trigger:
     platform: state
     entity_id: sensor.kitchen_motion_status
-    from: motion detected
-    to: standby
+    from: Motion Detected
+    to: None
     for:
       minutes: 1
   action:

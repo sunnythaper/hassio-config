@@ -15,3 +15,8 @@ emulated_hue_ids*
 *.xml
 camera.yaml
 zwave*
+.automatic
+session-*.json
+deps
+tts
+.shopping_list.json

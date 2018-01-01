@@ -1,8 +1,18 @@
 abode_status:
   name: Abode Status
   options:
-    - Standby
-    - Home
-    - Away
-  initial: Standby
+    - disarm
+    - arm_home
+    - arm_away
+  initial: disarm
   icon: mdi:security-home
+
+lights_scene:
+  name: Lights Scene
+  options:
+    - Out of the House
+    - Sleepytime
+    - Wakeytime
+    - Evening
+    - Upstairs OSMC Playing
+    - Bedroom Evening Chillin
