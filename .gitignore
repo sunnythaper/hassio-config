@@ -15,8 +15,9 @@ emulated_hue_ids*
 *.xml
 camera.yaml
 zwave*
-.automatic
+/.automatic
 session-*.json
-deps
-tts
+/deps
+/tts
 .shopping_list.json
+/octoprint
