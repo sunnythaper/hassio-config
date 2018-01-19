@@ -22,7 +22,7 @@ http:
 config: null
 updater: null
 discovery: null
-hassio: null
+hassio:
 conversation: null
 history: null
 recorder: !include recorder.yaml
@@ -48,7 +48,7 @@ alert: !include alert.yaml
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-climate: !include climate.yaml
+# climate: !include climate.yaml
 media_player: !include media_player.yaml
 google:
   client_id: !secret google_client_id

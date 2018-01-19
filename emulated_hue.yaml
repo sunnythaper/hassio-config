@@ -1,1 +1,2 @@
 host_ip: !secret hass_ip
+listen_port: 8300

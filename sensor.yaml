@@ -117,7 +117,6 @@
   sensors:
     living_room_heat_index:
       friendly_name: "Living Room Heat Index"
-      entity_id: sensor.living_room_temperature, sensor.living_room_humidity
       unit_of_measurement: °F
       value_template: >-
         {% set vars = {
@@ -181,7 +180,6 @@
   sensors:
     office_heat_index:
       friendly_name: "Office Heat Index"
-      entity_id: sensor.office_temperature, sensor.office_humidity
       unit_of_measurement: °F
       value_template: >-
         {% set vars = {
