@@ -10,6 +10,7 @@ homeassistant:
     light:
       icon: 'mdi:lightbulb-on-outline'
   customize_glob: {}
+  packages: !include_dir_named packages
 frontend:
   javascript_version: latest
 http:
@@ -22,7 +23,7 @@ http:
 config: null
 updater: null
 discovery: null
-hassio:
+hassio: null
 conversation: null
 history: null
 recorder: !include recorder.yaml
@@ -55,7 +56,6 @@ google:
   client_secret: !secret google_client_secret
   track_new_calendar: true
 input_select: !include input_select.yaml
-group: !include groups.yaml
 automation: !include automations.yaml
 scene: !include scene.yaml
 zone:
@@ -64,14 +64,9 @@ zone:
   longitude: !secret work_longitude
   radius: 100
   icon: mdi:domain
-emulated_hue: !include emulated_hue.yaml
 # influxdb:
 #   host: !secret influx_host
 #   username: !secret influx_user
 #   password: !secret influx_password
 python_script: null
-abode:
-  username: !secret sunnys_email
-  password: !secret abode_password
-  name: Abode
 shopping_list: null

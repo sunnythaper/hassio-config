@@ -1,0 +1,43 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'lifx'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## AUTOMATION - SET LIFX SCENE
+################################################################################
+
+automation:
+  id: set_lifx_scene
+  alias: Set LIFX Scene
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_select.lights_scene
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: scene.{{ trigger.to_state.state|lower|replace(" ", "_") }}_lifx
+
+################################################################################
+## LIFX PLATFORM
+################################################################################
+
+light:
+  platform: lifx

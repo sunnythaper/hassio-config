@@ -1,12 +1,3 @@
-abode_status:
-  name: Abode Status
-  options:
-    - disarm
-    - arm_home
-    - arm_away
-  initial: disarm
-  icon: mdi:security-home
-
 lights_scene:
   name: Lights Scene
   options:

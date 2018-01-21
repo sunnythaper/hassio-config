@@ -1,0 +1,415 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'groups'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+    ################################################################################
+    ## GROUP ORDER
+    ################################################################################
+
+    group.bedroom:
+      order: 1
+    camera.traffic:
+      order: 2
+    camera.7th_st:
+      order: 3
+    camera.16th_st:
+      order: 4
+    group.nest:
+      order: 5
+    group.upstairs_ac:
+      order: 6
+    group.weather:
+      order: 7
+    group.automations:
+      order: 8
+    group.other:
+      order: 9
+    group.sunnys_phone:
+      order: 10
+    group.network:
+      order: 11
+
+################################################################################
+## GROUPS
+################################################################################
+
+group:
+
+  ################################################################################
+  ## DEFAULT VIEW
+  ################################################################################
+
+  default_view:
+    view: 'yes'
+    icon: mdi:home
+    name: Home
+    entities:
+    - updater.updater
+    - group.scenes
+    - climate.nest
+    - climate.upstairs_ac
+
+  scenes:
+    name: Scenes
+    view: 'no'
+    entities:
+    - alarm_control_panel.abode
+    - scene.out_of_the_house
+    - scene.wakeytime
+    - scene.evening
+    - scene.sleepytime
+    - scene.bedroom_evening_chillin
+    - scene.upstairs_osmc_playing
+
+  ################################################################################
+  ## CAMERAS
+  ################################################################################
+
+  security:
+    name: Security
+    view: 'yes'
+    icon: mdi:video
+    entities:
+    - group.contact_sensors
+    - group.camera_status
+    - camera.living_room
+    - camera.dining_room
+
+  camera_status:
+    name: Status
+    view: false
+    control: hidden
+    entities:
+    - switch.camera_monitoring
+    - sensor.living_room_motion
+    - sensor.living_room_status
+    - sensor.dining_room_motion
+    - sensor.dining_room_status
+
+  contact_sensors:
+    name: Contact Sensors
+    view: false
+    control: hidden
+    entities:
+    - binary_sensor.remote
+    - binary_sensor.back_door
+    - binary_sensor.front_door
+    - binary_sensor.left_kitchen_window
+    - binary_sensor.right_kitchen_window
+
+  ################################################################################
+  ## LIGHTS
+  ################################################################################
+
+  lighting:
+    name: Lighting
+    view: 'yes'
+    icon: mdi:lightbulb-on-outline
+    entities:
+    - group.living_room
+    - group.dining_room
+    - group.kitchen
+    - group.bedroom
+    - group.office
+    - group.bathroom
+
+  living_room:
+    name: Living Room
+    view: 'no'
+    entities:
+    - light.arc_lamp
+    - light.fireplace
+    - light.left_tv
+    - light.right_tv
+
+  dining_room:
+    name: Dining Room
+    view: 'no'
+    entities:
+    - light.bar
+    - light.dining_room_ceiling_1
+    - light.dining_room_ceilng_2
+    - light.dining_room_table
+    - light.hallway
+
+  kitchen:
+    name: Kitchen
+    view: 'no'
+    entities:
+    - light.kitchen_desk_lamp
+    - switch.kitchen_cabinets_switch
+
+  bedroom:
+    name: Bedroom
+    view: 'no'
+    entities:
+    - light.left_bed
+    - light.right_bed
+    - light.closet
+    - light.foyer
+    - light.reading_lamp
+    - switch.stairway_switch
+
+  office:
+    name: Office
+    view: 'no'
+    entities:
+    - light.office_floor_lamp
+    - light.office_table_lamp
+
+  bathroom:
+    name: Bathroom
+    view: no
+    entities:
+    - light.bathroom_ceiling
+
+  ################################################################################
+  ## MEDIA
+  ################################################################################
+
+  media:
+    name: Media
+    view: 'yes'
+    icon: mdi:play-pause
+    entities:
+    - sensor.lastfm_ynnus
+    - media_player.osmc_main
+    - media_player.spotify
+    - media_player.apple_tv
+    - media_player.plex_web_chrome
+
+  ################################################################################
+  ## TRAVEL
+  ################################################################################
+
+  travel:
+    name: Travel
+    view: true
+    icon: mdi:car
+    entities:
+    - device_tracker.honda_accord_cpe
+    - camera.traffic
+    - camera.16th_st
+    - camera.7th_st
+
+  ################################################################################
+  ## INFORMATION
+  ################################################################################
+
+  information:
+    name: Info
+    view: 'yes'
+    icon: mdi:help-circle
+    entities:
+    - group.network
+    - group.sunnys_phone
+    - group.other
+    - group.automations
+    - group.asus_router
+    - group.nzbget
+
+  sunnys_phone:
+    name: Sunny's Phone
+    view: false
+    entities:
+    - device_tracker.sunnys_7_plus
+    - sensor.sunnys_7_plus_battery_level
+    - sensor.sunnys_7_plus_battery_state
+
+  other:
+    name: Other
+    view: 'no'
+    control: hidden
+    entities:
+    - light.controller_charger
+    - switch.amazon_dash
+    - calendar.work
+
+  automations:
+    name: Automations
+    view: false
+    entities:
+    - automation.sleepytime
+    - automation.wakeytime
+    - automation.upstairs_osmc_playing
+    - automation.set_abode_state
+    - automation.set_away_mode
+
+  network:
+    name: Network
+    view: false
+    entities:
+    - sensor.ssl_certificate_expiry
+    - sensor.fastcom_download
+
+  asus_router:
+    name: ASUS Router
+    view: false
+    entities:
+    - device_tracker.abode
+    - device_tracker.octopi
+    - device_tracker.plexserver
+    - device_tracker.sunnys7plus
+
+  nzbget:
+    name: NZBGet
+    view: false
+    entities:
+    - sensor.nzbget_article_cache
+    - sensor.nzbget_average_speed
+    - sensor.nzbget_disk_free
+    - sensor.nzbget_speed
+    - sensor.nzbget_uptime
+
+  ################################################################################
+  ## CLIMATE
+  ################################################################################
+
+  climate:
+    name: Climate
+    view: yes
+    icon: mdi:white-balance-sunny
+    entities:
+    - group.weather
+    - group.bedroom_climate
+    - group.living_room_climate
+    - group.office_climate
+    - group.kitchen_climate
+    - group.hallway_climate
+    - group.dining_room_climate
+    - camera.doppler_weather
+    - camera.wu_doppler_weather
+
+  weather:
+    name: Weather
+    view: 'no'
+    entities:
+    - sun.sun
+    - sensor.moon
+    - sensor.pws_weather
+    - sensor.pws_temp_f
+    - sensor.pws_feelslike_f
+    - sensor.pws_relative_humidity
+    - sensor.pws_dewpoint_f
+    - sensor.pws_heat_index_f
+    - sensor.pws_precip_1hr_in
+    - sensor.pws_precip_today_in
+    - sensor.pws_pressure_in
+    - sensor.pws_pressure_mb
+    - sensor.pws_pressure_trend
+    - sensor.pws_solarradiation
+    - sensor.pws_UV
+    - sensor.pws_visibility_mi
+    - sensor.pws_wind_degrees
+    - sensor.pws_wind_dir
+    - sensor.pws_wind_gust_mph
+    - sensor.pws_wind_mph
+    - sensor.pws_station_id
+
+  hallway_climate:
+    name: Hallway Climate
+    view: 'no'
+    entities:
+    - sensor.nest_thermostat_temperature
+    - sensor.nest_thermostat_humidity
+    - binary_sensor.nest_thermostat_has_leaf
+
+  living_room_climate:
+    name: Living Room Climate
+    entities:
+      - sensor.living_room_temperature
+      - sensor.living_room_humidity
+      - sensor.living_room_heat_index
+      - light.living_room_sensor_led
+      - sensor.living_room_motion_status
+
+  office_climate:
+    name: Office Climate
+    entities:
+      - sensor.office_temperature
+      - sensor.office_humidity
+      - sensor.office_heat_index
+      - light.office_sensor_led
+      - sensor.office_motion_status
+
+  bedroom_climate:
+    name: Bedroom Climate
+    entities:
+      - sensor.bedroom_temperature
+      - sensor.bedroom_humidity
+      - sensor.bedroom_heat_index
+      - light.bedroom_sensor_led
+      - sensor.bedroom_motion_status
+
+  kitchen_climate:
+    name: Kitchen Climate
+    entities:
+      - sensor.kitchen_temperature
+      - sensor.kitchen_humidity
+      - sensor.kitchen_heat_index
+      - light.kitchen_sensor_led
+      - sensor.kitchen_motion_status
+
+  dining_room_climate:
+    name: Dining Room Climate
+    entities:
+      - sensor.dining_room_temperature
+      - sensor.dining_room_humidity
+      - sensor.dining_room_heat_index
+      - light.dining_room_sensor_led
+      - sensor.dining_room_motion_status
+
+  ################################################################################
+  ## ENERGY USAGE (HIDDEN)
+  ################################################################################
+
+  energy_usage:
+    name: Energy Usage
+    view: no
+    entities:
+    - sensor.stairway_energy
+    - sensor.stairway_power
+    - sensor.stairway_previous_reading
+    - sensor.stairway_previous_reading_2
+
+  ################################################################################
+  ## EXTRA CRAP (HIDDEN)
+  ################################################################################
+
+  extra_crap:
+    name: Extra Crap
+    view: no
+    entities:
+    - sensor.pws_alerts
+    - sensor.bedroom_lux
+    - sensor.dining_room_lux
+    - sensor.kitchen_lux
+    - sensor.living_room_lux
+    - sensor.office_lux
+    - sensor.pws_elevation
+    - sensor.pws_location
+    - sensor.pws_observation_time
+    - binary_sensor.nest_thermostat_fan
+    - binary_sensor.nest_thermostat_is_locked
+    - binary_sensor.nest_thermostat_is_using_emergency_heat
+    - binary_sensor.nest_thermostat_online
+    - sensor.nest_thermostat_hvac_state
+    - sensor.nest_thermostat_operation_mode
+    - sensor.nest_thermostat_target

@@ -1,0 +1,66 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'philips_hue'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+    ################################################################################
+    ## HIDDEN GROUPS
+    ################################################################################
+
+    light.nuimo_group:
+      <<: *hidden
+    light.nuimo_group_2:
+      <<: *hidden
+    light.hue_lights:
+      <<: *hidden
+
+################################################################################
+## AUTOMATION - SET HUE SCENE
+################################################################################
+
+automation:
+  - id: set_hue_scene
+    alias: Set Hue Scene
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_select.lights_scene
+    action:
+      service: hue.hue_activate_scene
+      data_template:
+        group_name: "Hue Lights"
+        scene_name: "{{ trigger.to_state.state }}"
+
+################################################################################
+## HUE PLATFORM
+################################################################################
+
+hue:
+  bridges:
+    - host: !secret hue_ip
+      allow_unreachable: true
+      allow_hue_groups: true
+
+################################################################################
+## EMULATED HUE PLATFORM
+################################################################################
+
+emulated_hue:
+  host_ip: !secret hass_ip
+  expose_by_default: false
