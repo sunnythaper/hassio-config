@@ -39,3 +39,4 @@ recorder:
       - light
       - sensor
       - sun
+      - fan

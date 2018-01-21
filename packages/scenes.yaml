@@ -123,8 +123,7 @@ scene:
         option: Wakeytime
 
       group.dining_room: off
-      group.bedroom:
-        state: off
+      group.bedroom: off
       switch.stairway_switch: off
       group.living_room: off
       group.office: off
@@ -149,6 +148,7 @@ scene:
       # Lights
       input_select.lights_scene:
         option: Evening
+      switch.kitchen_cabinets_switch: on
 
       # Climate
       climate.nest:

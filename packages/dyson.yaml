@@ -1,0 +1,55 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'dyson'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## GROUPS
+################################################################################
+
+group:
+  fans:
+    name: Fans
+    view: yes
+    icon: mdi:fan
+    entities:
+      - group.living_room_fan
+
+  living_room_fan:
+    name: Living Room Fan
+    view: no
+    entities:
+      - fan.living_room_fan
+      - sensor.living_room_fan_air_quality
+      - sensor.living_room_fan_dust
+      - sensor.living_room_fan_filter_life
+      - sensor.living_room_fan_humidity
+      - sensor.living_room_fan_temperature
+
+################################################################################
+## DYSON PLATFORM
+################################################################################
+
+dyson:
+  username: !secret sunnys_email
+  password: !secret dyson_password
+  language: GB
+  devices:
+    - device_id: !secret dyson_id
+      device_ip: !secret dyson_ip
