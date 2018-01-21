@@ -1,0 +1,83 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'weather'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## SUN PLATFORM
+################################################################################
+
+sun: null
+
+################################################################################
+## SENSORS
+################################################################################
+
+sensor:
+
+  ################################################################################
+  ## MOON
+  ################################################################################
+
+  - platform: moon
+
+  ################################################################################
+  ## WEATHER UNDERGROUND
+  ################################################################################
+
+  - platform: wunderground
+    api_key: !secret wu_api_key
+    monitored_conditions:
+      - alerts
+      - dewpoint_f
+      - feelslike_f
+      - heat_index_f
+      - elevation
+      - location
+      - observation_time
+      - precip_1hr_in
+      - precip_today_in
+      - pressure_in
+      - pressure_mb
+      - pressure_trend
+      - relative_humidity
+      - station_id
+      - solarradiation
+      - temp_f
+      - UV
+      - visibility_mi
+      - weather
+      - wind_degrees
+      - wind_dir
+      - wind_gust_mph
+      - wind_mph
+
+################################################################################
+## CAMERAS
+################################################################################
+
+camera:
+
+  ################################################################################
+  ## DOPPLER RADAR
+  ################################################################################
+
+  - platform: generic
+    still_image_url: 'https://icons.wxug.com/data/weather-maps/radar/united-states/prescott-arizona-region-current-radar-animation.gif'
+    name: WU Doppler Weather

@@ -1,0 +1,85 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'office_multisensor'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## SENSORS
+################################################################################
+
+sensor:
+
+  - platform: mqtt
+    state_topic: "/office_multisensor/Climate/Temperature"
+    name: "Office Temperature"
+    unit_of_measurement: °F
+
+  - platform: mqtt
+    state_topic: "/office_multisensor/Climate/Humidity"
+    name: "Office Humidity"
+    unit_of_measurement: "%"
+
+  - platform: mqtt
+    state_topic: "/office_multisensor/Motion/Switch"
+    name: "Office Motion Status"
+    value_template: '{{ value|replace("0","None")|replace("1","Motion Detected") }}'
+
+  - platform: template
+    sensors:
+      office_heat_index:
+        friendly_name: "Office Heat Index"
+        unit_of_measurement: °F
+        value_template: >-
+          {% set vars = {
+            "c1": -42.379,
+            "c2": 2.04901523,
+            "c3": 10.14333127,
+            "c4": -0.22475541,
+            "c5": -0.00683783,
+            "c6": -0.05481717,
+            "c7": 0.00122874,
+            "c8": 0.00085282,
+            "c9": -0.00000199,
+            "t": states.sensor.office_temperature.state|float,
+            "h": states.sensor.office_humidity.state|float
+          } %}
+
+          {% set heatIndex = 0.5 * (vars.t + 61 + (vars.t - 68) * 1.2 + vars.h * 0.094) %}
+
+          {% if vars.t >= 80 %}
+
+            {% set heatIndexBase = vars.c1 + vars.c2 * vars.t + vars.c3 * vars.h + vars.c4 * vars.t * vars.h + vars.c5 * vars.t * vars.t + vars.c6 * vars.h * vars.h + vars.c7 * vars.t * vars.t * vars.h + vars.c8 * vars.t * vars.h * vars.h +vars.c9 * vars.t * vars.t * vars.h * vars.h %}
+
+            {% if vars.h < 13 and vars.t <= 112 %}
+
+              {% set heatIndex = heatIndexBase - (13 - vars.h) / 4 * root((17 - abs(vars.t - 95)) / 17) %}
+
+            {% elif vars.h > 85 and vars.t <= 87 %}
+
+              {% set heatIndex = heatIndexBase + ((vars.h - 85) / 10) * ((87 - vars.t) / 5) %}
+
+            {% else %}
+
+              {% set heatIndex = heatIndexBase %}
+
+            {%- endif %}
+
+          {%- endif %}
+
+          {{ heatIndex|round(2) }}

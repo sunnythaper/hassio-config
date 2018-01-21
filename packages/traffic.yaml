@@ -1,0 +1,50 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'traffic'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## CAMERAS
+################################################################################
+
+camera:
+
+  ################################################################################
+  ## 7TH STREET TRAFFIC
+  ################################################################################
+
+  - platform: generic
+    still_image_url: 'http://vods.az511.com/adot_020.jpg'
+    name: 7th St
+
+  ################################################################################
+  ## 16TH STREET TRAFFIC
+  ################################################################################
+
+  - platform: generic
+    still_image_url: 'http://vods.az511.com/adot_021.jpg'
+    name: 16th St
+
+  ################################################################################
+  ## TRAFFIC MAP
+  ################################################################################
+
+  - platform: generic
+    still_image_url: 'https://api.mapbox.com/styles/v1/mapbox/traffic-day-v2/static/pin-m-lodging+f02618(-112.063236,33.467366),pin-m-suitcase+00abe5(-111.954525,33.430185)/-112.007889,33.4493328,12,0/700x400@2x?access_token=pk.eyJ1Ijoic3Vubnl0aGFwZXIiLCJhIjoiY2oyZzFsNjZrMDZ5YzMzcGl5ZzNrZnZ4ZiJ9.p2HP8yMpPb2e2D76_RRGCw&attribution=false&logo=false'
+    name: Traffic

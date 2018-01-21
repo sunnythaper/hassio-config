@@ -12,7 +12,7 @@ homeassistant:
 
     package.node_anchors:
       customize: &customize
-        package: 'lifx'
+        package: 'abode'
 
       hidden: &hidden
         <<: *customize
@@ -20,32 +20,34 @@ homeassistant:
         emulated_hue_hidden: true
 
 ################################################################################
-## AUTOMATION - SET LIFX SCENE
+## AUTOMATION ARM ALARM AND TURNOFF LIGHTS WHEN CAR LEAVES
 ################################################################################
 
 automation:
-  id: set_lifx_scene
-  alias: Set LIFX Scene
-  initial_state: true
-  trigger:
-    platform: state
-    entity_id: input_select.lights_scene
-  action:
-    service: scene.turn_on
-    data_template:
-      entity_id: scene.{{ trigger.to_state.state|lower|replace(" ", "_") }}_lifx
+  - id: set_away_mode
+    alias: Set Away Mode
+    initial_state: true
+    trigger:
+      platform: zone
+      entity_id: device_tracker.honda_accord_cpe
+      zone: zone.home
+      event: leave
+    action:
+      service: scene.turn_on
+      entity_id: scene.out_of_the_house
 
 ################################################################################
-## LIFX PLATFORM
+## DEVICE TRACKER
 ################################################################################
 
-light:
-  platform: lifx
+device_tracker:
 
-################################################################################
-## LIFX SCENES
-################################################################################
+  ################################################################################
+  ## AUTOMATIC
+  ################################################################################
 
-scene:
-  - platform: lifx_cloud
-    token: !secret lifx_token
+  - platform: automatic
+    client_id: !secret automatic_client_id
+    secret: !secret automatic_secret
+    username: !secret sunnys_email
+    password: !secret automatic_password

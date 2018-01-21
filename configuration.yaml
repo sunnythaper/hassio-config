@@ -1,18 +1,26 @@
 homeassistant:
+
+  ################################################################################
+  ## BASE SETUP
+  ################################################################################
+
   name: Home
   latitude: !secret home_latitude
   longitude: !secret home_longitude
   elevation: !secret home_elevation
   unit_system: imperial
   time_zone: America/Phoenix
-  customize: !include customize.yaml
-  customize_domain:
-    light:
-      icon: 'mdi:lightbulb-on-outline'
-  customize_glob: {}
+
+  ################################################################################
+  ## PACKAGES
+  ################################################################################
+
   packages: !include_dir_named packages
-frontend:
-  javascript_version: latest
+
+################################################################################
+## FRONTEND
+################################################################################
+
 http:
   api_password: !secret hass_password
   ssl_certificate: /ssl/fullchain.pem
@@ -20,53 +28,42 @@ http:
   login_attempts_threshold: 5
   ip_ban_enabled: true
   base_url: !secret base_url
-config: null
+
+frontend:
+  javascript_version: latest
+
+################################################################################
+## FUNCTIONALITY
+################################################################################
+
 updater: null
 discovery: null
-hassio: null
-conversation: null
-history: null
-recorder: !include recorder.yaml
-logbook: null
-system_log: null
 ios: null
-map: null
-sun: null
-camera: !include camera.yaml
-sensor: !include sensor.yaml
+python_script: null
+system_log: null
+
+################################################################################
+## VOICE INTERFACE
+################################################################################
+
+conversation: null
 tts:
   platform: google
-mqtt: !include mqtt.yaml
+
+################################################################################
+## WEB INTERFACE
+################################################################################
+
+config: null
+hassio: null
+history: null
+logbook: null
+map: null
+shopping_list: null
+
+################################################################################
+## Z-WAVE
+################################################################################
+
 zwave:
   usb_path: /dev/ttyUSB0
-ifttt:
-  key: !secret ifttt_key
-device_tracker: !include device_tracker.yaml
-light: !include light.yaml
-switch: !include switch.yaml
-notify: !include notify.yaml
-alert: !include alert.yaml
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-# climate: !include climate.yaml
-media_player: !include media_player.yaml
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
-  track_new_calendar: true
-input_select: !include input_select.yaml
-automation: !include automations.yaml
-scene: !include scene.yaml
-zone:
-  name: Work
-  latitude: !secret work_latitude
-  longitude: !secret work_longitude
-  radius: 100
-  icon: mdi:domain
-# influxdb:
-#   host: !secret influx_host
-#   username: !secret influx_user
-#   password: !secret influx_password
-python_script: null
-shopping_list: null

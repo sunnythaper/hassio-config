@@ -1,0 +1,29 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'google'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## GOOGLE PLATFORM
+################################################################################
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+  track_new_calendar: true

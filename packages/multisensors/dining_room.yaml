@@ -1,0 +1,49 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'dining_room_multisensor'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## SENSORS
+################################################################################
+
+sensor:
+
+  - platform: mqtt
+    state_topic: "sensors/dining_room"
+    name: "Dining Room Temperature"
+    unit_of_measurement: °F
+    value_template: '{{ value_json.temperature }}'
+
+  - platform: mqtt
+    state_topic: "sensors/dining_room"
+    name: "Dining Room Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.humidity }}'
+
+  - platform: mqtt
+    state_topic: "sensors/dining_room"
+    name: "Dining Room Motion Status"
+    value_template: '{{ value_json.motion }}'
+
+  - platform: mqtt
+    state_topic: "sensors/dining_room"
+    name: "Dining Room Heat Index"
+    unit_of_measurement: °F
+    value_template: '{{ value_json.heatIndex }}'

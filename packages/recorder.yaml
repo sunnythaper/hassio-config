@@ -1,0 +1,41 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'recorder'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## RECORDER PLATFORM
+################################################################################
+
+recorder:
+  purge_interval: 2
+  purge_keep_days: 5
+  include:
+    domains:
+      - automation
+      - binary_sensor
+      - climate
+      - device_tracker
+      - input_select
+      - media_player
+      - switch
+      - calendar
+      - light
+      - sensor
+      - sun

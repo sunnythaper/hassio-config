@@ -1,0 +1,41 @@
+homeassistant:
+
+  ################################################################################
+  ## CUSTOMIZE
+  ################################################################################
+
+  customize:
+
+    ################################################################################
+    ## NODE ANCHORS
+    ################################################################################
+
+    package.node_anchors:
+      customize: &customize
+        package: 'media_server'
+
+      hidden: &hidden
+        <<: *customize
+        hidden: true
+        emulated_hue_hidden: true
+
+################################################################################
+## SENSORS
+################################################################################
+
+sensor:
+
+  ################################################################################
+  ## NZBGet
+  ################################################################################
+
+  - platform: nzbget
+    host: !secret nzbget_ip
+    username: !secret nzbget_username
+    password: !secret nzbget_password
+    monitored_variables:
+    - article_cache
+    - average_download_rate
+    - download_rate
+    - free_disk_space
+    - uptime
